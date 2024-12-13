@@ -17,4 +17,4 @@ Solutions for [Advent of Code](https://adventofcode.com/) in [Rust](https://www.
 
 Here's [the template repository](https://github.com/fspoettel/advent-of-code-rust) on Github.
 
-This code is mostly reused in the [advent_of_code](advent_of_code) crate.
+The template code is mostly reused in the [advent_of_code](advent_of_code) crate of this workspace.
