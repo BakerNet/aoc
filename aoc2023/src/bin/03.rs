@@ -62,7 +62,7 @@ fn has_adjacent_symbol(row: usize, col: usize, graph: &[Vec<Item>]) -> bool {
     false
 }
 
-fn get_part_numbers(graph: &Vec<Vec<Item>>, row: usize) -> Vec<u32> {
+fn get_part_numbers(graph: &[Vec<Item>], row: usize) -> Vec<u32> {
     let line = &graph[row];
     let mut part_numbers = Vec::new();
     let mut curr_num = 0;
@@ -102,7 +102,7 @@ pub fn part_one(input: &str) -> Option<u32> {
     Some(sum)
 }
 
-fn get_adjacent_stars(row: usize, col: usize, graph: &Vec<Vec<Item>>) -> HashSet<(usize, usize)> {
+fn get_adjacent_stars(row: usize, col: usize, graph: &[Vec<Item>]) -> HashSet<(usize, usize)> {
     let mut adjacent_stars = HashSet::new();
     let rows = graph.len();
     let cols = graph[0].len();
@@ -138,7 +138,7 @@ fn get_adjacent_stars(row: usize, col: usize, graph: &Vec<Vec<Item>>) -> HashSet
 }
 
 fn add_numbers_to_gear_map(
-    graph: &Vec<Vec<Item>>,
+    graph: &[Vec<Item>],
     gear_map: &mut HashMap<(usize, usize), Vec<u32>>,
     row: usize,
 ) {

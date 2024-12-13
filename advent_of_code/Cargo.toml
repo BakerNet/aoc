@@ -10,10 +10,6 @@ publish = false
 [lib]
 doctest = false
 
-[profile.dhat]
-inherits = "release"
-debug = 1
-
 [features]
 dhat-heap = ["dhat"]
 today = ["chrono"]

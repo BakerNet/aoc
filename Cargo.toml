@@ -12,3 +12,8 @@ version = "0.1.0"
 
 [workspace.dependencies]
 advent_of_code = { path = "./advent_of_code", version = "0.1.0" }
+
+[profile.dhat]
+inherits = "release"
+debug = 1
+
