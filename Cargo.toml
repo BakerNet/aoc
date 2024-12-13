@@ -1,0 +1,14 @@
+[workspace]
+resolver = "2"
+members = [
+    "advent_of_code",
+    "aoc2023",
+    "aoc2024",
+]
+exclude = ["template"]
+
+[workspace.package]
+version = "0.1.0"
+
+[workspace.dependencies]
+advent_of_code = { path = "./advent_of_code", version = "0.1.0" }

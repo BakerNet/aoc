@@ -1,0 +1,30 @@
+[package]
+name = "aoc2023"
+version = "0.11.0"
+authors = ["Hans Baker"]
+edition = "2021"
+default-run = "aoc2023"
+publish = false
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+[lib]
+doctest = false
+
+[features]
+dhat-heap = ["dhat"]
+today = ["chrono"]
+test_lib = []
+
+[dependencies]
+advent_of_code = { path = "../advent_of_code" }
+# Template dependencies
+chrono = { version = "0.4.38", optional = true }
+dhat = { version = "0.3.3", optional = true }
+itertools = "0.13.0"
+petgraph = "0.6.4"
+pico-args = "0.5.0"
+regex = "1.11.1"
+rustworkx-core = "0.13.2"
+z3 = { version = "0.12.1", features = ["num"] }
+
+# Solution dependencies
