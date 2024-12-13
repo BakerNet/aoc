@@ -1,6 +1,4 @@
-<img src="./.assets/christmas_ferris.png" width="164">
-
-# 🎄 Advent of Code Generation Code
+# 🎄 Advent of Code CLI Scripts
 
 ---
 

@@ -88,7 +88,10 @@ pub fn part_two(input: &str) -> Option<u64> {
     for (count, instruction) in instructions.iter().cycle().enumerate() {
         let curr_tuples: Vec<&(String, String)> = currs
             .iter()
-            .map(|&loc| map.get(loc).unwrap_or_else(|| panic!("Should find {} in map", loc)))
+            .map(|&loc| {
+                map.get(loc)
+                    .unwrap_or_else(|| panic!("Should find {} in map", loc))
+            })
             .collect();
         currs = curr_tuples
             .iter()
