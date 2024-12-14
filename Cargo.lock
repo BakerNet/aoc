@@ -91,12 +91,22 @@ name = "aoc2024"
 version = "0.11.0"
 dependencies = [
  "advent_of_code",
+ "aoc_utils",
  "chrono",
  "dhat",
  "itertools 0.13.0",
  "pico-args",
  "regex",
  "tinyjson",
+ "tinyvec",
+]
+
+[[package]]
+name = "aoc_utils"
+version = "0.1.0"
+dependencies = [
+ "itertools 0.13.0",
+ "regex",
  "tinyvec",
 ]
 
