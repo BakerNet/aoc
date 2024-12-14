@@ -19,7 +19,7 @@ Solutions for [Advent of Code](https://adventofcode.com/) in [Rust](https://www.
 | [Day 11](https://adventofcode.com/2024/day/11) | [code](src/bin/11.rs) | ⭐ | ⭐ |
 | [Day 12](https://adventofcode.com/2024/day/12) | [code](src/bin/12.rs) | ⭐ | ⭐ |
 | [Day 13](https://adventofcode.com/2024/day/13) | [code](src/bin/13.rs) | ⭐ | ⭐ |
-| [Day 14](https://adventofcode.com/2024/day/14) | [code](src/bin/14.rs) | _ | _ |
+| [Day 14](https://adventofcode.com/2024/day/14) | [code](src/bin/14.rs) | ⭐ | ⭐ |
 | [Day 15](https://adventofcode.com/2024/day/15) | [code](src/bin/15.rs) | _ | _ |
 | [Day 16](https://adventofcode.com/2024/day/16) | [code](src/bin/16.rs) | _ | _ |
 | [Day 17](https://adventofcode.com/2024/day/17) | [code](src/bin/17.rs) | _ | _ |
