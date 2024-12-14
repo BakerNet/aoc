@@ -23,6 +23,8 @@ jobs:
                     target/
                 key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
                 restore-keys: ${{ runner.os }}-cargo-
+            - name: nightly
+              run: rustup update nightly && rustup default nightly
             - name: cargo test
               run: cargo test
             - name: cargo clippy
