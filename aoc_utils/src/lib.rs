@@ -1,3 +1,5 @@
+use std::{fmt::Debug, str::FromStr};
+
 use itertools::Itertools;
 use regex::{Captures, Regex};
 
@@ -83,5 +85,26 @@ impl<'a> InputParse<'a> for &'a str {
         F: Fn(&str) -> U + 'static + Copy,
     {
         self.split("\n\n").map(f).collect_vec()
+    }
+}
+
+pub trait ExtractNum {
+    fn get_num<U>(&self, pos: usize) -> U
+    where
+        U: FromStr,
+        <U as FromStr>::Err: Debug;
+}
+
+impl ExtractNum for Captures<'_> {
+    fn get_num<U>(&self, pos: usize) -> U
+    where
+        U: FromStr,
+        <U as FromStr>::Err: Debug,
+    {
+        self.get(pos)
+            .expect("Should get px")
+            .as_str()
+            .parse::<U>()
+            .expect("Capture should be int")
     }
 }
