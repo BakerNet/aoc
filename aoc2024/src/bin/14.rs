@@ -35,11 +35,11 @@ pub fn part_one(input: &str) -> Option<u64> {
     bots.into_iter().for_each(|b| {
         let mut fx = (b.pos.0 + (b.vel.0 * 100)) % WIDTH;
         if fx < 0 {
-            fx = WIDTH + fx;
+            fx += WIDTH;
         }
         let mut fy = (b.pos.1 + (b.vel.1 * 100)) % HEIGHT;
         if fy < 0 {
-            fy = HEIGHT + fy;
+            fy += HEIGHT;
         }
         match (fx, fy) {
             (x, y) if x < WIDTH / 2 && y < HEIGHT / 2 => {
@@ -80,11 +80,11 @@ pub fn part_two(input: &str) -> Option<u64> {
         bots.iter().for_each(|b| {
             let mut fx = (b.pos.0 + (b.vel.0 * i)) % WIDTH;
             if fx < 0 {
-                fx = WIDTH + fx;
+                fx += WIDTH;
             }
             let mut fy = (b.pos.1 + (b.vel.1 * i)) % HEIGHT;
             if fy < 0 {
-                fy = HEIGHT + fy;
+                fy += HEIGHT;
             }
             map[fy as usize][fx as usize] = '0'
         });
