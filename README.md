@@ -1,5 +1,7 @@
 <img src="./.assets/christmas_ferris.png" width="164">
 
+[![Continuous Integration](https://github.com/BakerNet/aoc/actions/workflows/ci.yml/badge.svg)](https://github.com/BakerNet/aoc/actions/workflows/ci.yml)
+
 # 🎄 Advent of Code
 
 Solutions for [Advent of Code](https://adventofcode.com/) in [Rust](https://www.rust-lang.org/).
