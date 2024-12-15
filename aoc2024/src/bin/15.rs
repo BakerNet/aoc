@@ -5,14 +5,6 @@ use itertools::Itertools;
 
 advent_of_code::solution!(15);
 
-#[derive(Clone, Copy, Debug)]
-enum Dir {
-    Up,
-    Down,
-    Left,
-    Right,
-}
-
 fn handle_move(d: Dir, curr: &mut (usize, usize), map: &mut [Vec<char>]) {
     let mut temp = (curr.0, curr.1);
     match d {

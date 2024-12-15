@@ -97,16 +97,26 @@ pub fn part_two(input: &str) -> Option<u64> {
     }
 
     // manually looking at output, see some sort of pattern at 19 and a different one at 70
+    //   pattern @ 19: Horizontal "ribbon"
+    //   pattern @ 70: Vertical "ribbon"
+    //   When the horizontal & vertical "ribbons" line up is where the tree will be.
+    //
     // pattern at 19 repeats every 103 (height)
-    // x*103 + 19 = res
-    // pattern at 70 reteats every 101 (width)
-    // y*101 + 70 = res
+    //  x*103 + 19 = res
+    // pattern at 70 repeats every 101 (width)
+    //  y*101 + 70 = res
     //
     // y = (103x - 51)/101
 
+    // NOTE: These constants (19 & 70) will differ for different input - use the prints to find
+    // where your patterns occur
+    const VERTICAL_PATTERN: f64 = 19.0;
+    const HORIZONTAL_PATTERN: f64 = 70.0;
+
     let mut x = 0;
     for i in 1..101 {
-        let res = (103.0 * (i as f64) - 51.0) / 101.0;
+        let res =
+            (HEIGHT as f64 * (i as f64) - (HORIZONTAL_PATTERN - VERTICAL_PATTERN)) / WIDTH as f64;
         // find first whole number - this is our x in x * 103 + 19 = res
         if res.fract() == 0.0 {
             x = i;
@@ -130,6 +140,7 @@ mod tests {
     #[test]
     fn test_part_two() {
         let result = part_two(&advent_of_code::template::read_file("examples", DAY));
-        assert_eq!(result, Some(7847));
+        // doesn't actually make a tree in example input
+        assert_eq!(result, Some(122));
     }
 }
