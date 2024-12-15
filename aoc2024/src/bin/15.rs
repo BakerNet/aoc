@@ -132,7 +132,7 @@ pub fn part_one(input: &str) -> Option<u64> {
     Some(
         map.iter()
             .enumerate()
-            .map(|(row, v)| {
+            .flat_map(|(row, v)| {
                 v.iter().enumerate().filter_map(move |(col, c)| {
                     if *c == 'O' {
                         Some((100 * row + col) as u64)
@@ -141,7 +141,6 @@ pub fn part_one(input: &str) -> Option<u64> {
                     }
                 })
             })
-            .flatten()
             .sum::<u64>(),
     )
 }
@@ -279,7 +278,7 @@ fn complex_shift(temp: (usize, usize), d: Dir, map: &mut [Vec<char>]) -> bool {
 }
 
 fn simple_shift(temp: (usize, usize), d: Dir, map: &mut [Vec<char>]) -> bool {
-    let orig = temp.clone();
+    let orig = temp;
     let mut temp = temp;
     match d {
         Dir::Left => {
@@ -372,7 +371,7 @@ pub fn part_two(input: &str) -> Option<u64> {
     Some(
         map.iter()
             .enumerate()
-            .map(|(row, v)| {
+            .flat_map(|(row, v)| {
                 v.iter().enumerate().filter_map(move |(col, c)| {
                     if *c == '[' {
                         Some((100 * row + col) as u64)
@@ -381,7 +380,6 @@ pub fn part_two(input: &str) -> Option<u64> {
                     }
                 })
             })
-            .flatten()
             .sum::<u64>(),
     )
 }
