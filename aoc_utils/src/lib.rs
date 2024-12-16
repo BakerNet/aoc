@@ -4,15 +4,34 @@ use itertools::Itertools;
 use regex::{Captures, Regex};
 use tinyvec::{ArrayVec, array_vec};
 
-#[derive(Debug, Default, Clone, Copy, PartialEq, Eq)]
-pub struct Point(usize, usize);
-#[derive(Debug, Clone, Copy, PartialEq, Eq)]
-pub struct Bounds(usize, usize);
+#[derive(Debug, Default, Clone, Copy, PartialEq, Eq, PartialOrd, Hash)]
+pub struct Point(pub usize, pub usize);
 
-#[derive(Debug, Default, Clone, Copy, PartialEq, Eq)]
-pub struct IPoint(i64, i64);
+pub fn find_point<U>(map: &[Vec<U>], val: U) -> Point
+where
+    U: PartialEq,
+{
+    map.iter()
+        .enumerate()
+        .find_map(|(row, v)| {
+            v.iter().enumerate().find_map(|(col, item)| {
+                if *item == val {
+                    Some(Point(row, col))
+                } else {
+                    None
+                }
+            })
+        })
+        .expect("Should find point")
+}
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub struct Bounds(pub usize, pub usize);
+
+#[derive(Debug, Default, Clone, Copy, PartialEq, Eq, PartialOrd, Hash)]
+pub struct IPoint(pub i64, pub i64);
+
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 pub enum Dir {
     Up,
     Down,
