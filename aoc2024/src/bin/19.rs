@@ -5,6 +5,18 @@ use itertools::Itertools;
 
 advent_of_code::solution!(19);
 
+fn parse_input(input: &str) -> (Vec<&str>, HashSet<&str>, usize) {
+    let blocks = input.blocks();
+    let towels = blocks[0].split(", ").collect::<HashSet<&str>>();
+    let max_len = towels
+        .iter()
+        .map(|s| s.len())
+        .max()
+        .expect("There should be a max");
+    let patterns = blocks[1].lines().collect_vec();
+    (patterns, towels, max_len)
+}
+
 fn is_possible<'a>(
     s: &'a str,
     towels: &HashSet<&'a str>,
@@ -35,19 +47,11 @@ fn is_possible<'a>(
 }
 
 pub fn part_one(input: &str) -> Option<u64> {
-    let blocks = input.blocks();
-    let towels = blocks[0].split(", ").collect::<HashSet<&str>>();
-    let max_len = towels
-        .iter()
-        .map(|s| s.len())
-        .max()
-        .expect("There should be a max");
-    let patterns = blocks[1].lines().collect_vec();
-    let mut memo = HashMap::new();
+    let (patterns, towels, max_len) = parse_input(input);
     Some(
         patterns
             .into_iter()
-            .filter(|s| is_possible(s, &towels, max_len, &mut memo))
+            .filter(|s| is_possible(s, &towels, max_len, &mut HashMap::new()))
             .count() as u64,
     )
 }
@@ -77,19 +81,11 @@ fn possible_ways<'a>(
 }
 
 pub fn part_two(input: &str) -> Option<u64> {
-    let blocks = input.blocks();
-    let towels = blocks[0].split(", ").collect::<HashSet<&str>>();
-    let max_len = towels
-        .iter()
-        .map(|s| s.len())
-        .max()
-        .expect("There should be a max");
-    let patterns = blocks[1].lines().collect_vec();
-    let mut memo = HashMap::new();
+    let (patterns, towels, max_len) = parse_input(input);
     Some(
         patterns
             .into_iter()
-            .map(|s| possible_ways(s, &towels, max_len, &mut memo))
+            .map(|s| possible_ways(s, &towels, max_len, &mut HashMap::new()))
             .sum::<u64>(),
     )
 }
