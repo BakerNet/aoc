@@ -11,11 +11,14 @@ const SAVE_CUTOFF: usize = 50;
 
 fn find_path(start: Point, end: Point, map: &[Vec<char>]) -> Vec<Point> {
     let bounds = Bounds(map.len() - 1, map[0].len() - 1);
-    let seen = &mut vec![vec![false; bounds.1 + 1]; bounds.0 + 1];
-    seen[start.0][start.1] = true;
+    let mut seen = vec![vec![false; bounds.1 + 1]; bounds.0 + 1];
+
     let mut queue = VecDeque::new();
     let mut path = Vec::new();
+
+    seen[start.0][start.1] = true;
     queue.push_back(start);
+
     while !queue.is_empty() {
         let curr = queue.pop_front().unwrap();
         path.push(curr);
@@ -23,11 +26,12 @@ fn find_path(start: Point, end: Point, map: &[Vec<char>]) -> Vec<Point> {
             break;
         }
         Dir::neighbors(curr, bounds).into_iter().for_each(|p| {
-            if !seen[p.0][p.1] {
-                seen[p.0][p.1] = true;
-                if map[p.0][p.1] != '#' {
-                    queue.push_back(p);
-                }
+            if seen[p.0][p.1] {
+                return;
+            }
+            seen[p.0][p.1] = true;
+            if map[p.0][p.1] != '#' {
+                queue.push_back(p);
             }
         });
     }
