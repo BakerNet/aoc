@@ -39,6 +39,12 @@ pub enum Dir {
     Right,
 }
 
+pub fn dist(p: Point, p2: Point) -> usize {
+    let x = if p.0 > p2.0 { p.0 - p2.0 } else { p2.0 - p.0 };
+    let y = if p.1 > p2.1 { p.1 - p2.1 } else { p2.1 - p.1 };
+    x + y
+}
+
 impl Dir {
     pub fn neighbors(p: Point, b: Bounds) -> ArrayVec<[Point; 4]> {
         let mut ns = array_vec!([Point; 4]);
