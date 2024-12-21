@@ -289,6 +289,14 @@ where
     if y < 0 { x - (-y) as u64 } else { x + y as u64 }
 }
 
+pub fn ufroms(s: &str) -> u64 {
+    s.parse().expect("Should parse number")
+}
+
+pub fn ufromc(c: char) -> u32 {
+    c.to_digit(10).expect("Should parse number")
+}
+
 pub trait InputParse<'a> {
     fn mlines<F, U>(self, f: F) -> Vec<U>
     where
