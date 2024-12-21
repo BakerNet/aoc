@@ -10,7 +10,7 @@ Solutions for [Advent of Code](https://adventofcode.com/) in [Rust](https://www.
 
 | Year | Completed |
 | :---: | :---: |
-| [2024](aoc2024) | 40/50 |
+| [2024](aoc2024) | 42/50 |
 | [2023](aoc2023) | 50/50 |
 
 ---
