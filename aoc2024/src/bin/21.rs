@@ -1,6 +1,5 @@
-use std::collections::HashMap;
-
 use aoc_utils::*;
+use memoize::memoize;
 
 advent_of_code::solution!(21);
 
@@ -33,23 +32,16 @@ fn dirpad_loc(c: char) -> Point {
 }
 
 fn solve(num: &str, layers: u64) -> u64 {
-    bot_moves_dirpad(0, layers, num.to_string(), &mut HashMap::new())
+    bot_moves_dirpad(0, layers, num.to_string())
 }
 
-fn bot_moves_dirpad(
-    layer: u64,
-    max_layer: u64,
-    prev: String,
-    cache: &mut HashMap<(u64, String), u64>,
-) -> u64 {
+#[memoize]
+fn bot_moves_dirpad(layer: u64, max_layer: u64, prev: String) -> u64 {
     if layer > max_layer {
         return prev.len() as u64;
     }
     if prev.is_empty() {
         return 0;
-    }
-    if let Some(n) = cache.get(&(layer, prev.clone())) {
-        return *n;
     }
     let mut pos = if layer == 0 { Point(3, 2) } else { Point(0, 2) };
     let bad_pos = if layer == 0 { Point(3, 0) } else { Point(0, 0) };
@@ -79,8 +71,8 @@ fn bot_moves_dirpad(
             hpath += "<";
             pos.1 -= 1;
         }
-        let res1 = bot_moves_dirpad(layer + 1, max_layer, hpath.clone() + &vpath + "A", cache);
-        let res2 = bot_moves_dirpad(layer + 1, max_layer, vpath.clone() + &hpath + "A", cache);
+        let res1 = bot_moves_dirpad(layer + 1, max_layer, hpath.clone() + &vpath + "A");
+        let res2 = bot_moves_dirpad(layer + 1, max_layer, vpath.clone() + &hpath + "A");
         if target.0 == bad_pos.0 && start.1 == bad_pos.1 {
             ans += res1;
         } else if target.1 == bad_pos.1 && start.0 == bad_pos.0 {
@@ -91,7 +83,6 @@ fn bot_moves_dirpad(
             ans += res2;
         }
     });
-    cache.insert((layer, prev), ans);
     ans
 }
 
