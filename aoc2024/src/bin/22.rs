@@ -47,9 +47,7 @@ fn secret_number_with_seqcount(num: u64, times: usize, counts: &mut HashMap<[i8;
             prev_arry[i + 1] = curr - prev;
             continue;
         }
-        prev_arry[0] = prev_arry[1];
-        prev_arry[1] = prev_arry[2];
-        prev_arry[2] = prev_arry[3];
+        prev_arry.rotate_left(1);
         prev_arry[3] = curr - prev;
         if !inner_counts.contains(&prev_arry) {
             inner_counts.insert(prev_arry);
