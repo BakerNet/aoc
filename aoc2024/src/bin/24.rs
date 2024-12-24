@@ -191,10 +191,8 @@ pub fn part_two(input: &str) -> Option<String> {
             if !matches!(r, Rule::Or(_)) {
                 bad_outputs.insert(r.out());
             }
-        } else {
-            if !matches!(r, Rule::Xor(_)) {
-                bad_outputs.insert(r.out());
-            }
+        } else if !matches!(r, Rule::Xor(_)) {
+            bad_outputs.insert(r.out());
         }
     });
 
