@@ -44,7 +44,7 @@ fn largest_containing<'a>(
     tried_containing: &mut HashSet<String>,
     cons: &'a HashMap<&'a str, Vec<&'a str>>,
 ) -> String {
-    let item = containing.iter().next().unwrap();
+    let item = containing.first().unwrap();
     let v = cons.get(item).unwrap();
     let res = v
         .iter()
