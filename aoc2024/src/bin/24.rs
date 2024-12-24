@@ -137,7 +137,7 @@ pub fn part_two(input: &str) -> Option<String> {
 
     let mut bad_outputs = HashSet::new();
     // check FAGate0 gates for Zns
-    // each of these should be An XOR Bn -> VAL0n
+    // each of these should be Xn XOR Yn -> VAL0n
     // except for the first one, which should be x00 XOR y00 -> z00
     let fa0s = rules
         .iter()
@@ -157,8 +157,7 @@ pub fn part_two(input: &str) -> Option<String> {
         }
     });
 
-    // call rules that do not take Xn & Yn gates as inputs indirect
-    // check all XOR gates that are indirect (FAGate3)
+    // check all XOR gates that do not take Xn or Yn inputs (FAGate3)
     // each of these should be outputting to a zXX
     let fa3s = rules
         .iter()
@@ -206,10 +205,6 @@ pub fn part_two(input: &str) -> Option<String> {
             if r.out() == "z00" {
                 return false;
             }
-            if bad_outputs.contains(r.out()) {
-                // skip - already a bad output
-                return false;
-            }
             !fa3s
                 .iter()
                 .any(|r2| r2.left() == r.out() || r2.right() == r.out())
@@ -224,7 +219,7 @@ pub fn part_two(input: &str) -> Option<String> {
             .expect("Shoud have a next");
         let left = expected_fa3.left();
         let right = expected_fa3.right();
-        // find an FAGate4 that outputs a c_in used as input to the expected FAGate3
+        // find an FAGate4 that outputs a CIN used as input to the expected FAGate3
         // the other input should be the output of the bad FAGate0
         rules.iter().for_each(|r3| {
             if matches!(r3, Rule::Or(_)) {
