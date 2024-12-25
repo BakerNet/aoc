@@ -30,6 +30,6 @@ Solutions for [Advent of Code](https://adventofcode.com/) in [Rust](https://www.
 | [Day 22](https://adventofcode.com/2024/day/22) | [code](src/bin/22.rs) | ⭐ | ⭐ |
 | [Day 23](https://adventofcode.com/2024/day/23) | [code](src/bin/23.rs) | ⭐ | ⭐ |
 | [Day 24](https://adventofcode.com/2024/day/24) | [code](src/bin/24.rs) | ⭐ | ⭐ |
-| [Day 25](https://adventofcode.com/2024/day/25) | [code](src/bin/25.rs) | _ | _ |
+| [Day 25](https://adventofcode.com/2024/day/25) | [code](src/bin/25.rs) | ⭐ | ⭐ |
 
 ---
