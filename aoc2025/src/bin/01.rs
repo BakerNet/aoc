@@ -1,4 +1,7 @@
-advent_of_code::solution!(%DAY_NUMBER%);
+use aoc_utils::*;
+use itertools::Itertools;
+
+advent_of_code::solution!(1);
 
 pub fn part_one(input: &str) -> Option<u64> {
     None

@@ -1,9 +1,9 @@
 [package]
-name = "aoc{Year}"
-version = "0.11.0"
+name = "aoc2025"
+version = "0.12.0"
 authors = ["Hans Baker"]
 edition = "2021"
-default-run = "aoc{Year}"
+default-run = "aoc2025"
 publish = false
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
