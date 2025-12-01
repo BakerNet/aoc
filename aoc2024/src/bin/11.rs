@@ -20,7 +20,7 @@ fn blink(curr: u64, count: u8, to: u8, seen: &mut HashMap<(u64, u8), u64>) -> u6
         blink(1, count + 1, to, seen)
     } else {
         let len = curr.checked_ilog10().unwrap_or(0) + 1;
-        if len % 2 == 0 {
+        if len.is_multiple_of(2) {
             let (first, second) = split_num(curr, len);
             blink(first, count + 1, to, seen) + blink(second, count + 1, to, seen)
         } else {

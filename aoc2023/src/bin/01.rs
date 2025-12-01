@@ -7,7 +7,7 @@ pub fn part_one(input: &str) -> Option<u32> {
             .map(|line| {
                 let mut digits = line.char_indices().filter_map(|c| c.1.to_digit(10));
                 let first = digits.next().expect("Expected a digit");
-                let last = if let Some(last) = digits.last() {
+                let last = if let Some(last) = digits.next_back() {
                     last
                 } else {
                     first
@@ -53,7 +53,7 @@ pub fn part_two(input: &str) -> Option<u32> {
                     }
                 });
                 let first = digits.next().expect("Expected a digit");
-                let last = if let Some(last) = digits.last() {
+                let last = if let Some(last) = digits.next_back() {
                     last
                 } else {
                     first

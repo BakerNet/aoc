@@ -22,7 +22,7 @@ pub fn valid_neighbors(point: (usize, usize), map: &[Vec<char>]) -> Vec<(usize, 
 pub fn valid_neighbors_p2(point: (usize, usize), map: &[Vec<char>]) -> Vec<(usize, usize)> {
     let mut ret = Vec::with_capacity(4);
     let width = map.len();
-    if point.0 % width == 0 {
+    if point.0.is_multiple_of(width) {
         if map[width - 1][point.1 % width] != '#' {
             ret.push((point.0 - 1, point.1));
         }
@@ -36,7 +36,7 @@ pub fn valid_neighbors_p2(point: (usize, usize), map: &[Vec<char>]) -> Vec<(usiz
     } else if map[point.0 % width + 1][point.1 % width] != '#' {
         ret.push((point.0 + 1, point.1));
     }
-    if point.1 % width == 0 {
+    if point.1.is_multiple_of(width) {
         if map[point.0 % width][width - 1] != '#' {
             ret.push((point.0, point.1 - 1));
         }

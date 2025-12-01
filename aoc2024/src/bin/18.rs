@@ -81,7 +81,7 @@ fn find_shortest_path(
 
     while !queue.is_empty() {
         let (curr_v, len) = queue.pop_front().unwrap();
-        let curr = curr_v.iter().last().unwrap();
+        let curr = curr_v.iter().next_back().unwrap();
         if *curr == Point(bounds.0, bounds.1) {
             return Some(curr_v);
         }

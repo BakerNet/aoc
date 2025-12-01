@@ -16,7 +16,7 @@ fn get_lower_race_quadratic(time: u64, record: u64) -> u64 {
 
 fn extract_vec(s: &str) -> Vec<u64> {
     s.split(':')
-        .last()
+        .next_back()
         .expect("There should be a :")
         .split_whitespace()
         .map(|s| s.parse::<u64>().expect("Times should be numbers"))
@@ -47,7 +47,7 @@ pub fn part_one(input: &str) -> Option<u64> {
 
 fn extract_num(s: &str) -> u64 {
     s.split(':')
-        .last()
+        .next_back()
         .expect("There should be a :")
         .split_whitespace()
         .fold(String::new(), |acc, s| acc + s)

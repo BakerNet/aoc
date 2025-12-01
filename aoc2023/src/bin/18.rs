@@ -32,11 +32,7 @@ fn poly_area(points: &[(usize, usize)]) -> usize {
     let y_rolled = [vec![last.1], y[0..y.len() - 1].to_vec()].concat();
     let x_dot: usize = x.iter().zip(y_rolled.iter()).map(|(x, y)| x * y).sum();
     let y_dot: usize = y.iter().zip(x_rolled.iter()).map(|(y, x)| y * x).sum();
-    let diff = if x_dot > y_dot {
-        x_dot - y_dot
-    } else {
-        y_dot - x_dot
-    };
+    let diff = x_dot.abs_diff(y_dot);
     diff / 2
 }
 
@@ -142,7 +138,7 @@ pub fn part_two(input: &str) -> Option<u64> {
         .map(|line| {
             let items = line.split_whitespace();
             let hex = re.captures(items.last().unwrap()).unwrap()[1].to_owned();
-            let dir = match hex.chars().last().unwrap() {
+            let dir = match hex.chars().next_back().unwrap() {
                 '0' => Direction::Right,
                 '1' => Direction::Down,
                 '2' => Direction::Left,

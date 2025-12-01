@@ -21,7 +21,7 @@ pub fn part_one(input: &str) -> Option<u64> {
     Some(
         v1.into_iter()
             .zip(v2)
-            .map(|(x, y)| if x > y { x - y } else { y - x })
+            .map(|(x, y)| x.abs_diff(y))
             .sum::<u64>(),
     )
 }

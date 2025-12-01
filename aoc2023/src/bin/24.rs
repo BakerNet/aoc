@@ -32,7 +32,7 @@ impl Hailstone {
 
     fn xy_pointslope(&self) -> (f64, f64) {
         let slope = self.velocity.1 as f64 / self.velocity.0 as f64;
-        let intercept = slope * -1_f64 * self.point.0 as f64 + self.point.1 as f64;
+        let intercept = -slope * self.point.0 as f64 + self.point.1 as f64;
         (slope, intercept)
     }
 

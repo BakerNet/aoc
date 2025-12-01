@@ -8,7 +8,7 @@ pub fn part_one(input: &str) -> Option<u32> {
         .map(|line| {
             let split: Vec<HashSet<u32>> = line
                 .split(':')
-                .last()
+                .next_back()
                 .expect("Should be a string afer :")
                 .split('|')
                 .map(|s| {
@@ -39,7 +39,7 @@ pub fn part_two(input: &str) -> Option<u32> {
         .map(|line| {
             let split: Vec<HashSet<u32>> = line
                 .split(':')
-                .last()
+                .next_back()
                 .expect("Should be a string afer :")
                 .split('|')
                 .map(|s| {
