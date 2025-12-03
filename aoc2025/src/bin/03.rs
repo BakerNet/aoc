@@ -2,52 +2,38 @@ use aoc_utils::*;
 
 advent_of_code::solution!(3);
 
-pub fn part_one(input: &str) -> Option<u64> {
-    let sum = input
-        .mlines(|line| {
-            let len = line.len();
-            let chars = line.as_bytes();
-            let mut max = 11;
-            for start in 0..(len - 1) {
-                for end in (start + 1)..len {
-                    let num = (chars[start] - 48) * 10 + (chars[end] - 48);
-                    if num > max {
-                        max = num;
-                        if max == 99 {
-                            return max as u64;
-                        }
-                    }
-                }
+fn find_max_num(num_digits: usize, line: &str) -> u64 {
+    let len = line.len();
+    let chars = line.as_bytes();
+    let mut final_num = 0_u64;
+    let mut place = 0;
+    for digit in 0..num_digits {
+        let mut current = 0;
+        let place_clone = place;
+        #[allow(clippy::needless_range_loop)]
+        for loc in place_clone..(len - (11 - digit)) {
+            // 48 == ascii '0'
+            if (chars[loc] - 48) > current {
+                current = chars[loc] - 48;
+                place = loc + 1;
             }
-            max as u64
-        })
-        .into_iter()
-        .sum();
+            if current == 9 {
+                break;
+            }
+        }
+        final_num = final_num * 10 + current as u64;
+    }
+    final_num
+}
+
+pub fn part_one(input: &str) -> Option<u64> {
+    let sum = input.mlines(|line| find_max_num(2, line)).into_iter().sum();
     Some(sum)
 }
 
 pub fn part_two(input: &str) -> Option<u64> {
     let sum = input
-        .mlines(|line| {
-            let len = line.len();
-            let chars = line.as_bytes();
-            let mut final_num = 0_u64;
-            let mut place = 0;
-            // 12 batteries
-            for digit in 0..12 {
-                let mut current = 0;
-                let place_clone = place;
-                #[allow(clippy::needless_range_loop)]
-                for loc in place_clone..(len - (11 - digit)) {
-                    if (chars[loc] - 48) > current {
-                        current = chars[loc] - 48;
-                        place = loc + 1;
-                    }
-                }
-                final_num = final_num * 10 + current as u64;
-            }
-            final_num
-        })
+        .mlines(|line| find_max_num(12, line))
         .into_iter()
         .sum();
     Some(sum)
