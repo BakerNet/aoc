@@ -14,15 +14,14 @@ pub fn part_one(input: &str) -> Option<u64> {
                     if num > max {
                         max = num;
                         if max == 99 {
-                            return max;
+                            return max as u64;
                         }
                     }
                 }
             }
-            max
+            max as u64
         })
         .into_iter()
-        .map(|x| x as u64)
         .sum();
     Some(sum)
 }
@@ -37,7 +36,9 @@ pub fn part_two(input: &str) -> Option<u64> {
             // 12 batteries
             for digit in 0..12 {
                 let mut current = 0;
-                for loc in place..(len - (11 - digit)) {
+                let place_clone = place;
+                #[allow(clippy::needless_range_loop)]
+                for loc in place_clone..(len - (11 - digit)) {
                     if (chars[loc] - 48) > current {
                         current = chars[loc] - 48;
                         place = loc + 1;
@@ -48,7 +49,6 @@ pub fn part_two(input: &str) -> Option<u64> {
             final_num
         })
         .into_iter()
-        .map(|x| x as u64)
         .sum();
     Some(sum)
 }
