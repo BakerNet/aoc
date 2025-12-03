@@ -11,7 +11,7 @@ fn find_max_num(num_digits: usize, line: &str) -> u64 {
         let mut current = 0;
         let place_clone = place;
         #[allow(clippy::needless_range_loop)]
-        for loc in place_clone..(len - (11 - digit)) {
+        for loc in place_clone..(len - (num_digits - 1 - digit)) {
             // 48 == ascii '0'
             if (chars[loc] - 48) > current {
                 current = chars[loc] - 48;
