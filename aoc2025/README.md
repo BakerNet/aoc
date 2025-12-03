@@ -8,7 +8,7 @@ Solutions for [Advent of Code](https://adventofcode.com/) in [Rust](https://www.
 | :---: | :---: | :---: | :---: |
 | [Day 1](https://adventofcode.com/2025/day/1) | [code](src/bin/01.rs) | ⭐ | ⭐ |
 | [Day 2](https://adventofcode.com/2025/day/2) | [code](src/bin/02.rs) | ⭐ | ⭐ |
-| [Day 3](https://adventofcode.com/2025/day/3) | [code](src/bin/03.rs) | _ | _ |
+| [Day 3](https://adventofcode.com/2025/day/3) | [code](src/bin/03.rs) | ⭐ | ⭐ |
 | [Day 4](https://adventofcode.com/2025/day/4) | [code](src/bin/04.rs) | _ | _ |
 | [Day 5](https://adventofcode.com/2025/day/5) | [code](src/bin/05.rs) | _ | _ |
 | [Day 6](https://adventofcode.com/2025/day/6) | [code](src/bin/06.rs) | _ | _ |
