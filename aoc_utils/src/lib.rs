@@ -5,7 +5,7 @@ use regex::{Captures, Regex};
 use tinyvec::{ArrayVec, array_vec};
 
 /// 2D grid point: `Point(row, col)`
-#[derive(Debug, Default, Clone, Copy, PartialEq, Eq, PartialOrd, Hash)]
+#[derive(Debug, Default, Clone, Copy, PartialEq, Eq, PartialOrd, Hash, Ord)]
 pub struct Point(pub usize, pub usize);
 
 /// Find first occurrence of value in 2D grid
