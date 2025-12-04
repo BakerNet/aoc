@@ -412,6 +412,20 @@ impl<'a> InputParse<'a> for &'a str {
     }
 }
 
+pub trait MapUtils {
+    fn points(&self) -> Vec<Point>;
+}
+
+impl<T> MapUtils for Vec<Vec<T>> {
+    fn points(&self) -> Vec<Point> {
+        self.iter()
+            .enumerate()
+            .map(|(x, v)| v.iter().enumerate().map(|(y, _)| Point(x, y)).collect_vec())
+            .flatten()
+            .collect_vec()
+    }
+}
+
 /// Extract numbers from regex captures
 pub trait ExtractNum {
     /// Parse capture group at position to number type
