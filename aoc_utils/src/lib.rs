@@ -412,7 +412,9 @@ impl<'a> InputParse<'a> for &'a str {
     }
 }
 
+// Convenience methods for working with maps
 pub trait MapUtils {
+    // Get list of all points in the map
     fn points(&self) -> Vec<Point>;
 }
 
@@ -420,8 +422,7 @@ impl<T> MapUtils for Vec<Vec<T>> {
     fn points(&self) -> Vec<Point> {
         self.iter()
             .enumerate()
-            .map(|(x, v)| v.iter().enumerate().map(|(y, _)| Point(x, y)).collect_vec())
-            .flatten()
+            .flat_map(|(x, v)| v.iter().enumerate().map(|(y, _)| Point(x, y)).collect_vec())
             .collect_vec()
     }
 }
