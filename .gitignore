@@ -21,3 +21,4 @@ target/
 !*/data/inputs/.keep
 */data/puzzles/*
 !*/data/puzzles/.keep
+*/data/timings.json

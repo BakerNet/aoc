@@ -7,7 +7,6 @@ pub mod runner;
 pub use day::*;
 
 mod day;
-mod readme_benchmarks;
 mod run_multi;
 mod timings;
 

@@ -1,4 +1,9 @@
-use std::{collections::HashMap, fs, io::Error, str::FromStr};
+use std::{
+    collections::HashMap,
+    fs,
+    io::{Error, ErrorKind},
+    str::FromStr,
+};
 use tinyjson::JsonValue;
 
 use crate::template::Day;
@@ -31,9 +36,11 @@ impl Timings {
 
     /// Rehydrate timings from a JSON file. If not present, returns empty timings.
     pub fn read_from_file() -> Self {
-        let s = fs::read_to_string(TIMINGS_FILE_PATH)
-            .map_err(|x| x.to_string())
-            .and_then(Timings::try_from);
+        let s = match fs::read_to_string(TIMINGS_FILE_PATH) {
+            Ok(s) => Timings::try_from(s),
+            Err(e) if e.kind() == ErrorKind::NotFound => Ok(Timings::default()),
+            Err(e) => Err(e.to_string()),
+        };
 
         match s {
             Ok(timings) => timings,
