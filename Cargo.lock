@@ -83,6 +83,23 @@ dependencies = [
 ]
 
 [[package]]
+name = "aoc2015"
+version = "0.11.0"
+dependencies = [
+ "advent_of_code",
+ "aoc_utils",
+ "chrono",
+ "dhat",
+ "itertools 0.13.0",
+ "md5",
+ "memoize",
+ "pico-args",
+ "regex",
+ "tinyjson",
+ "tinyvec",
+]
+
+[[package]]
 name = "aoc2023"
 version = "0.11.0"
 dependencies = [
@@ -490,6 +507,12 @@ checksum = "e999beba7b6e8345721bd280141ed958096a2e4abdf74f67ff4ce49b4b54e47a"
 dependencies = [
  "hashbrown 0.12.3",
 ]
+
+[[package]]
+name = "md5"
+version = "0.8.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "ae960838283323069879657ca3de837e9f7bbb4c7bf6ea7f1b290d5e9476d2e0"
 
 [[package]]
 name = "memchr"

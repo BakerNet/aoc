@@ -137,12 +137,12 @@ impl Dir {
     }
 
     /// Move one step in this direction (unbounded, may underflow)
-    pub fn inext(&self, p: Point) -> Point {
+    pub fn inext(&self, p: IPoint) -> IPoint {
         match self {
-            Dir::Up => Point(p.0 - 1, p.1),
-            Dir::Down => Point(p.0 + 1, p.1),
-            Dir::Left => Point(p.0, p.1 - 1),
-            Dir::Right => Point(p.0, p.1 + 1),
+            Dir::Up => IPoint(p.0 - 1, p.1),
+            Dir::Down => IPoint(p.0 + 1, p.1),
+            Dir::Left => IPoint(p.0, p.1 - 1),
+            Dir::Right => IPoint(p.0, p.1 + 1),
         }
     }
 }
@@ -596,15 +596,15 @@ mod test {
 
     #[test]
     fn test_dir_ext_inext() {
-        let point = Point(2, 2);
+        let point = IPoint(2, 2);
 
-        assert_eq!(DirExt::Up.inext(point), Point(1, 2));
-        assert_eq!(DirExt::UpLeft.inext(point), Point(1, 1));
-        assert_eq!(DirExt::UpRight.inext(point), Point(1, 3));
-        assert_eq!(DirExt::Down.inext(point), Point(3, 2));
-        assert_eq!(DirExt::DownLeft.inext(point), Point(3, 1));
-        assert_eq!(DirExt::DownRight.inext(point), Point(3, 3));
-        assert_eq!(DirExt::Left.inext(point), Point(2, 1));
-        assert_eq!(DirExt::Right.inext(point), Point(2, 3));
+        assert_eq!(DirExt::Up.inext(point), IPoint(1, 2));
+        assert_eq!(DirExt::UpLeft.inext(point), IPoint(1, 1));
+        assert_eq!(DirExt::UpRight.inext(point), IPoint(1, 3));
+        assert_eq!(DirExt::Down.inext(point), IPoint(3, 2));
+        assert_eq!(DirExt::DownLeft.inext(point), IPoint(3, 1));
+        assert_eq!(DirExt::DownRight.inext(point), IPoint(3, 3));
+        assert_eq!(DirExt::Left.inext(point), IPoint(2, 1));
+        assert_eq!(DirExt::Right.inext(point), IPoint(2, 3));
     }
 }

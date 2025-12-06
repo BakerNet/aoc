@@ -2,6 +2,7 @@
 resolver = "2"
 members = [
     "advent_of_code",
+    "aoc2015",
     "aoc2023",
     "aoc2024",
     "aoc2025",
