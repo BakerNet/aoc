@@ -1,4 +1,3 @@
-
 advent_of_code::solution!(4);
 
 fn solve(input: &str, num_zeroes: usize) -> Option<u64> {
