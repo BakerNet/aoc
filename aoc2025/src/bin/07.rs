@@ -35,13 +35,10 @@ pub fn part_two(input: &str) -> Option<u64> {
         skip -= 1;
         for c in skip..width - skip - 1 {
             let curr = row[c];
-            match curr {
-                b'^' => {
-                    map_counts[c - 1] += map_counts[c];
-                    map_counts[c + 1] += map_counts[c];
-                    map_counts[c] = 0;
-                }
-                _ => (),
+            if curr == b'^' {
+                map_counts[c - 1] += map_counts[c];
+                map_counts[c + 1] += map_counts[c];
+                map_counts[c] = 0;
             }
         }
     }
@@ -70,9 +67,7 @@ pub fn part_two_original(input: &str) -> Option<u64> {
                 _ => (),
             }
         }
-        let temp = map_counts;
-        map_counts = new_map_counts;
-        new_map_counts = temp;
+        std::mem::swap(&mut map_counts, &mut new_map_counts);
         if skip != 0 {
             skip -= 1;
             new_map_counts.iter_mut().for_each(|x| *x = 0);
