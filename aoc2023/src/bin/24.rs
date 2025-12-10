@@ -99,24 +99,22 @@ pub fn part_one(input: &str) -> Option<u64> {
 pub fn part_two(input: &str) -> Option<u64> {
     let stones = input.lines().map(Hailstone::from).collect::<Vec<_>>();
 
-    let z3_conf = z3::Config::new();
-    let ctx = z3::Context::new(&z3_conf);
-    let solver = z3::Solver::new(&ctx);
+    let solver = z3::Solver::new();
 
-    let x = Int::new_const(&ctx, "x");
-    let y = Int::new_const(&ctx, "y");
-    let z = Int::new_const(&ctx, "z");
+    let x = Int::new_const("x");
+    let y = Int::new_const("y");
+    let z = Int::new_const("z");
 
-    let vx = Int::new_const(&ctx, "vx");
-    let vy = Int::new_const(&ctx, "vy");
-    let vz = Int::new_const(&ctx, "vz");
+    let vx = Int::new_const("vx");
+    let vy = Int::new_const("vy");
+    let vz = Int::new_const("vz");
 
     stones.iter().enumerate().for_each(|(i, hs)| {
-        let t_intercept = Int::new_const(&ctx, format!("t_{}", i));
+        let t_intercept = Int::new_const(format!("t_{}", i));
 
-        solver.assert(&(&x + &vx * &t_intercept)._eq(&(hs.point.0 + hs.velocity.0 * &t_intercept)));
-        solver.assert(&(&y + &vy * &t_intercept)._eq(&(hs.point.1 + hs.velocity.1 * &t_intercept)));
-        solver.assert(&(&z + &vz * &t_intercept)._eq(&(hs.point.2 + hs.velocity.2 * &t_intercept)));
+        solver.assert(&(&x + &vx * &t_intercept).eq(&(hs.point.0 + hs.velocity.0 * &t_intercept)));
+        solver.assert(&(&y + &vy * &t_intercept).eq(&(hs.point.1 + hs.velocity.1 * &t_intercept)));
+        solver.assert(&(&z + &vz * &t_intercept).eq(&(hs.point.2 + hs.velocity.2 * &t_intercept)));
     });
 
     let res = solver.check();

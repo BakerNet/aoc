@@ -1,9 +1,6 @@
 use aoc_utils::*;
 use itertools::Itertools;
-use z3::{
-    ast::{Ast, Int},
-    Config, Context, Optimize, SatResult,
-};
+use z3::{ast::Int, Optimize, SatResult};
 
 advent_of_code::solution!(10);
 
@@ -66,13 +63,11 @@ pub fn part_one(input: &str) -> Option<u64> {
 }
 
 fn solve_part2(buttons: &[Vec<usize>], joltages: &[u64]) -> u64 {
-    let cfg = Config::new();
-    let ctx = Context::new(&cfg);
-    let opt = Optimize::new(&ctx);
+    let opt = Optimize::new();
 
     // target_counts = number of times to press each button (what we're solving for)
     let target_counts: Vec<Int> = (0..buttons.len())
-        .map(|i| Int::new_const(&ctx, format!("p{i}")))
+        .map(|i| Int::new_const(format!("p{i}")))
         .collect();
 
     // Constraint: (sum of target_counts[i] for all i where pos in buttons[i]) == joltages[pos]
@@ -84,19 +79,19 @@ fn solve_part2(buttons: &[Vec<usize>], joltages: &[u64]) -> u64 {
             .map(|(i, _)| &target_counts[i])
             .collect();
 
-        let sum = Int::add(&ctx, &terms);
-        opt.assert(&sum._eq(&Int::from_u64(&ctx, jolt)));
+        let sum = Int::add(&terms);
+        opt.assert(&sum.eq(&Int::from_u64(jolt)));
     }
 
     // Constraint: t >= 0 (can't press a button negative times)
-    let zero = Int::from_u64(&ctx, 0);
+    let zero = Int::from_u64(0);
     for t in &target_counts {
         opt.assert(&t.ge(&zero));
     }
 
     // Minimize sum of target_counts
     let target_count_refs: Vec<_> = target_counts.iter().collect();
-    let total = Int::add(&ctx, &target_count_refs);
+    let total = Int::add(&target_count_refs);
     opt.minimize(&total);
 
     // Solve and extract result
