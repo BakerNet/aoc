@@ -75,12 +75,12 @@ fn solve_part2(buttons: &[Vec<usize>], joltages: &[u64]) -> u64 {
         .map(|i| Int::new_const(&ctx, format!("p{i}")))
         .collect();
 
-    // Constraint: (sum of target_counts[i] for all i where light_pos in buttons[i]) == joltages[light_pos]
-    for (light_pos, &jolt) in joltages.iter().enumerate() {
+    // Constraint: (sum of target_counts[i] for all i where pos in buttons[i]) == joltages[pos]
+    for (pos, &jolt) in joltages.iter().enumerate() {
         let terms: Vec<_> = buttons
             .iter()
             .enumerate()
-            .filter(|(_, b)| b.contains(&light_pos))
+            .filter(|(_, b)| b.contains(&pos))
             .map(|(i, _)| &target_counts[i])
             .collect();
 
