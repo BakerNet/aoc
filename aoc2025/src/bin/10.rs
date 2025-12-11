@@ -80,7 +80,7 @@ fn solve_part2(buttons: &[Vec<usize>], joltages: &[u64]) -> u64 {
             .collect();
 
         let sum = Int::add(&terms);
-        opt.assert(&sum.eq(&Int::from_u64(jolt)));
+        opt.assert(&sum.eq(Int::from_u64(jolt)));
     }
 
     // Constraint: t >= 0 (can't press a button negative times)

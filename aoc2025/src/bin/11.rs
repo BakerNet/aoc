@@ -5,6 +5,8 @@ use itertools::Itertools;
 advent_of_code::solution!(11);
 
 fn parse_input(input: &str) -> (HashMap<usize, Vec<usize>>, HashMap<String, usize>) {
+    // convert all the ids to usize ints because borrow checker and &str don't get along
+    // It's also almost certainly more efficient for hashing
     let mut machine_ids = HashMap::new();
     let s_to_id = move |m: String, machine_ids: &mut HashMap<String, usize>| {
         if let Some(x) = machine_ids.get(&m) {
@@ -61,6 +63,7 @@ pub fn part_one(input: &str) -> Option<u64> {
     Some(total)
 }
 
+#[allow(clippy::too_many_arguments)]
 fn recurse_paths_part2(
     m: usize,
     end: usize,
