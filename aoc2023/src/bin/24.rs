@@ -112,9 +112,9 @@ pub fn part_two(input: &str) -> Option<u64> {
     stones.iter().enumerate().for_each(|(i, hs)| {
         let t_intercept = Int::new_const(format!("t_{}", i));
 
-        solver.assert(&(&x + &vx * &t_intercept).eq(&(hs.point.0 + hs.velocity.0 * &t_intercept)));
-        solver.assert(&(&y + &vy * &t_intercept).eq(&(hs.point.1 + hs.velocity.1 * &t_intercept)));
-        solver.assert(&(&z + &vz * &t_intercept).eq(&(hs.point.2 + hs.velocity.2 * &t_intercept)));
+        solver.assert((&x + &vx * &t_intercept).eq(&(hs.point.0 + hs.velocity.0 * &t_intercept)));
+        solver.assert((&y + &vy * &t_intercept).eq(&(hs.point.1 + hs.velocity.1 * &t_intercept)));
+        solver.assert((&z + &vz * &t_intercept).eq(&(hs.point.2 + hs.velocity.2 * &t_intercept)));
     });
 
     let res = solver.check();
