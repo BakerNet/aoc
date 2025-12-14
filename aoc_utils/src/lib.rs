@@ -328,12 +328,12 @@ pub trait InputParse<'a> {
     /// Map function over each line
     fn mlines<F, U>(self, f: F) -> Vec<U>
     where
-        F: Fn(&str) -> U + 'static + Copy;
+        F: FnMut(&str) -> U;
 
     /// Apply regex to each line and map captures
     fn regex_mlines<F, U>(self, re: Regex, f: F) -> Vec<U>
     where
-        F: Fn(Captures) -> U + 'static + Copy;
+        F: FnMut(Captures) -> U + Copy;
 
     /// Parse to char grid `Vec<Vec<char>>`
     fn c_map(self) -> Vec<Vec<char>>;
@@ -341,7 +341,7 @@ pub trait InputParse<'a> {
     /// Parse to char grid with mapping function
     fn c_mmap<F, U>(self, f: F) -> Vec<Vec<U>>
     where
-        F: Fn(char) -> U + 'static + Copy;
+        F: FnMut(char) -> U + Copy;
 
     /// Split lines by whitespace to `Vec<Vec<&str>>`
     fn ws_map(self) -> Vec<Vec<&'a str>>;
@@ -349,7 +349,7 @@ pub trait InputParse<'a> {
     /// Split lines by whitespace and map each token
     fn ws_mmap<F, U>(self, f: F) -> Vec<Vec<U>>
     where
-        F: Fn(&str) -> U + 'static + Copy;
+        F: FnMut(&str) -> U + Copy;
 
     /// Split input by double newlines
     fn blocks(self) -> Vec<&'a str>;
@@ -357,20 +357,20 @@ pub trait InputParse<'a> {
     /// Split by double newlines and map each block
     fn mblocks<F, U>(self, f: F) -> Vec<U>
     where
-        F: Fn(&str) -> U + 'static + Copy;
+        F: FnMut(&str) -> U;
 }
 
 impl<'a> InputParse<'a> for &'a str {
     fn mlines<F, U>(self, f: F) -> Vec<U>
     where
-        F: Fn(&str) -> U + 'static + Copy,
+        F: FnMut(&str) -> U,
     {
         self.lines().map(f).collect_vec()
     }
 
     fn regex_mlines<F, U>(self, re: Regex, f: F) -> Vec<U>
     where
-        F: Fn(Captures) -> U + 'static + Copy,
+        F: FnMut(Captures) -> U + Copy,
     {
         self.lines()
             .map(|l| re.captures(l).map(f).expect("Regex should work"))
@@ -383,7 +383,7 @@ impl<'a> InputParse<'a> for &'a str {
 
     fn c_mmap<F, U>(self, f: F) -> Vec<Vec<U>>
     where
-        F: Fn(char) -> U + 'static + Copy,
+        F: FnMut(char) -> U + Copy,
     {
         self.lines()
             .map(|l| l.chars().map(f).collect_vec())
@@ -398,7 +398,7 @@ impl<'a> InputParse<'a> for &'a str {
 
     fn ws_mmap<F, U>(self, f: F) -> Vec<Vec<U>>
     where
-        F: Fn(&str) -> U + 'static + Copy,
+        F: FnMut(&str) -> U + Copy,
     {
         self.lines()
             .map(|l| l.split_whitespace().map(f).collect_vec())
@@ -411,7 +411,7 @@ impl<'a> InputParse<'a> for &'a str {
 
     fn mblocks<F, U>(self, f: F) -> Vec<U>
     where
-        F: Fn(&str) -> U + 'static + Copy,
+        F: FnMut(&str) -> U,
     {
         self.split("\n\n").map(f).collect_vec()
     }

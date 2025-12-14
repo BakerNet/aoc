@@ -17,6 +17,6 @@ Solutions for [Advent of Code](https://adventofcode.com/) in [Rust](https://www.
 | [Day 9](https://adventofcode.com/2025/day/9) | [code](src/bin/09.rs) | ⭐ | ⭐ |
 | [Day 10](https://adventofcode.com/2025/day/10) | [code](src/bin/10.rs) | ⭐ | ⭐ |
 | [Day 11](https://adventofcode.com/2025/day/11) | [code](src/bin/11.rs) | ⭐ | ⭐ |
-| [Day 12](https://adventofcode.com/2025/day/12) | [code](src/bin/12.rs) | _ | _ |
+| [Day 12](https://adventofcode.com/2025/day/12) | [code](src/bin/12.rs) | ⭐ | ⭐ |
 
 ---
