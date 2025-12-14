@@ -46,10 +46,7 @@ pub fn part_one(input: &str) -> Option<u64> {
                 shapes[index] += s.as_bytes().iter().filter(|c| **c == b'#').count() as u64;
             });
         } else {
-            block
-                .lines()
-                .map(Region::from)
-                .for_each(|r| spaces.push(r));
+            block.lines().map(Region::from).for_each(|r| spaces.push(r));
         }
     }
     Some(
